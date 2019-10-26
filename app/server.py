@@ -9,17 +9,17 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://www.dropbox.com/s/6bgq8t6yextloqp/export.pkl?raw=1'
+export_file_url = 'https://www.dropbox.com/s/ycekkb0lvcdyrz6/stageresnet50-7.pth?raw=1'
 export_file_name = 'export.pkl'
-
-classes = ['black', 'grizzly', 'teddys']
+classes = ['Atypical', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Normal']
+#classes = ['black', 'grizzly', 'teddys']
 path = Path(__file__).parent
-
+print('TEST !!!')
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
 app.mount('/static', StaticFiles(directory='app/static'))
 
-
+print('TEST !!!')
 async def download_file(url, dest):
     if dest.exists(): return
     async with aiohttp.ClientSession() as session:
@@ -28,7 +28,7 @@ async def download_file(url, dest):
             with open(dest, 'wb') as f:
                 f.write(data)
 
-
+print('TEST !!!')
 async def setup_learner():
     await download_file(export_file_url, path / export_file_name)
     try:
@@ -42,10 +42,11 @@ async def setup_learner():
         else:
             raise
 
-
+print('TEST !!!')
 loop = asyncio.get_event_loop()
 tasks = [asyncio.ensure_future(setup_learner())]
 learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
+print('TEST !!!')
 loop.close()
 
 
