@@ -9,7 +9,7 @@ from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse, JSONResponse
 from starlette.staticfiles import StaticFiles
 
-export_file_url = 'https://www.dropbox.com/s/ycekkb0lvcdyrz6/stageresnet50-7.pth?raw=1'
+export_file_url = 'https://www.dropbox.com/s/ifmpbazcrnprubr/export.pkl?dl=1'
 export_file_name = 'export.pkl'
 classes = ['Atypical', 'Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Normal']
 #classes = ['black', 'grizzly', 'teddys']
